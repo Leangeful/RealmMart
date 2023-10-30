@@ -3,12 +3,14 @@
 @tailwind utilities;
 @tailwind variants;
 
-/* vintage theme */
-/* @font-face {
-	font-family: 'Abril Fatface';
-	src: url('/fonts/AbrilFatface.ttf');
-	font-display: swap;
-} */
+body,
+html {
+	@apply h-full;
+}
+
+body {
+	@apply bg-secondary-50 dark:bg-surface-900;
+}
 
 @font-face {
 	font-family: 'Berry Rotunda';
@@ -20,9 +22,4 @@
 	font-family: 'VerilySerifMono';
 	src: url('/fonts/VerilySerifMono.otf');
 	font-display: swap;
-}
-
-:root [data-theme='vintage'] {
-	--theme-font-family-base: 'VerilySerifMono', serif;
-	--theme-font-family-heading: 'Berry Rotunda', sans-serif;
 }
