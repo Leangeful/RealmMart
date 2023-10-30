@@ -4,8 +4,25 @@
 @tailwind variants;
 
 /* vintage theme */
-@font-face {
+/* @font-face {
 	font-family: 'Abril Fatface';
 	src: url('/fonts/AbrilFatface.ttf');
 	font-display: swap;
+} */
+
+@font-face {
+	font-family: 'Berry Rotunda';
+	src: url('/fonts/Berry Rotunda.ttf');
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'VerilySerifMono';
+	src: url('/fonts/VerilySerifMono.otf');
+	font-display: swap;
+}
+
+:root [data-theme='vintage'] {
+	--theme-font-family-base: 'VerilySerifMono', serif;
+	--theme-font-family-heading: 'Berry Rotunda', sans-serif;
 }
