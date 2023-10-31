@@ -3,11 +3,9 @@
 	import { initializeStores } from '@skeletonlabs/skeleton';
 
 	import { AppShell, AppBar, Drawer } from '@skeletonlabs/skeleton';
-	import BarLead from '../components/appbar/BarLead.svelte';
-	import BarTrail from '../components/appbar/BarTrail.svelte';
-	import Navigation from '../components/navigation/Navigation.svelte';
-
-	import { t, locales, locale } from '$lib/i18n';
+	import BarLead from '../lib/components/appbar/BarLead.svelte';
+	import BarTrail from '../lib/components/appbar/BarTrail.svelte';
+	import Navigation from '../lib/components/navigation/Navigation.svelte';
 
 	initializeStores();
 </script>
