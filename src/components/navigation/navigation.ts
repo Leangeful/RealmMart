@@ -5,6 +5,6 @@ export enum nav {
 }
 
 export const navigation = [
-	{ name: 'Home', id: nav.Home, r: '/' },
-	{ name: 'Settings', id: nav.Settings, r: '/settings' }
+	{ name: 'start', id: nav.Home, r: '/' },
+	{ name: 'settings', id: nav.Settings, r: '/settings' }
 ];

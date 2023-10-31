@@ -7,6 +7,8 @@
 	import BarTrail from '../components/appbar/BarTrail.svelte';
 	import Navigation from '../components/navigation/Navigation.svelte';
 
+	import { t, locales, locale } from '$lib/i18n';
+
 	initializeStores();
 </script>
 

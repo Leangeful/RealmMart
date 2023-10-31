@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { t } from '$lib/i18n';
 	export let data;
 </script>
 
@@ -6,7 +7,8 @@
 	<h1 class="h1 mt-10">RealmMart {data.game.n}</h1>
 	<hr class="h-px" />
 
-	<p>Start by exploring:</p>
+	<p>{$t('content.title')}:</p>
+	<p>x</p>
 
 	<div class="block card p-2">
 		<div class="h3">Stores</div>
@@ -21,7 +23,6 @@
 	<button type="button" class="btn variant-filled-primary" on:click={() => data.game.n++}
 		>Increment n</button
 	>
-	<button type="button" class="btn variant-filled-primary">Primary</button>
 	<button type="button" class="btn variant-filled-secondary">Secondary</button>
 	<button type="button" class="btn variant-filled-tertiary">tertiary</button>
 	<button type="button" class="btn variant-filled-success">success</button>

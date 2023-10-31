@@ -2,7 +2,7 @@
 	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	import { navigation } from './navigation';
 	import { base } from '$app/paths';
-
+	import { t, locale, locales } from '$lib/i18n';
 	const drawerStore = getDrawerStore();
 
 	function itemClicked() {
@@ -14,7 +14,7 @@
 	<ul class="">
 		<li class="space-y-2">
 			{#each navigation as n}
-				<a href="{base}{n.r}" on:click={itemClicked}>{n.name}</a>
+				<a href="{base}{n.r}" on:click={itemClicked}>{$t('nav.' + n.name)}</a>
 			{/each}
 		</li>
 	</ul>
