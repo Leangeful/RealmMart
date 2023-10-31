@@ -1,14 +1,11 @@
 <script lang="ts">
 	import { getDrawerStore } from '@skeletonlabs/skeleton';
-	import { createEventDispatcher } from 'svelte';
-	import { navigation, type nav } from './navigation';
+	import { navigation } from './navigation';
 
 	const drawerStore = getDrawerStore();
-	const dispatch = createEventDispatcher();
 
-	function itemClicked(id: nav) {
+	function itemClicked() {
 		drawerStore.close();
-		dispatch('nav', id);
 	}
 </script>
 
@@ -16,11 +13,7 @@
 	<ul class="">
 		<li class="space-y-2">
 			{#each navigation as n}
-				<button
-					class="btn variant-ghost-surface w-full"
-					id="nav-{n.id}"
-					on:click={() => itemClicked(n.id)}>{n.name}</button
-				>
+				<a href={n.r} on:click={itemClicked}>{n.name}</a>
 			{/each}
 		</li>
 	</ul>
