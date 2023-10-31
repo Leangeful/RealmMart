@@ -4,6 +4,15 @@
 	import Icon from '@iconify/svelte';
 	import BarTrail from '../components/appbar/BarTrail.svelte';
 	import Navigation from '../components/navigation/Navigation.svelte';
+	import { nav } from '../components/navigation/navigation';
+	import Settings from '../components/Settings.svelte';
+	import Main from '../components/Main.svelte';
+
+	let currentPage: nav = nav.Home;
+	function onNav(e: CustomEvent) {
+		currentPage = e.detail;
+		console.log(nav[currentPage], currentPage);
+	}
 </script>
 
 <Drawer>
@@ -26,35 +35,16 @@
 	<!--SideBar-->
 	<svelte:fragment slot="sidebarLeft">
 		<!-- Hidden below Tailwind's large breakpoint -->
-		<div id="sidebar-left" class="hidden lg:block h-full bg-surface-900 border-primary-50/5">
-			<Navigation />
+		<div id="sidebar-left" class="hidden lg:block w-64 h-full bg-surface-900 border-primary-50/5">
+			<Navigation on:nav={onNav} />
 		</div>
 	</svelte:fragment>
 
-	<div class="container h-full mx-auto flex justify-center">
-		<div class="space-y-5">
-			<h1 class="h1 mt-10">RealmMart</h1>
-			<hr class="h-px" />
-
-			<p>Start by exploring:</p>
-
-			<div class="block card p-2">
-				<div class="h3">Stores</div>
-				<ul>
-					<li><code class="code">/src/routes/+layout.svelte</code> - barebones layout</li>
-					<li><code class="code">/src/app.postcss</code> - app wide css</li>
-					<li>
-						<code class="code">/src/routes/+page.svelte</code> - this page, you can replace the contents
-					</li>
-				</ul>
-			</div>
-			<button type="button" class="btn variant-filled-primary">Primary</button>
-			<button type="button" class="btn variant-filled-secondary">Secondary</button>
-			<button type="button" class="btn variant-filled-tertiary">tertiary</button>
-			<button type="button" class="btn variant-filled-success">success</button>
-			<button type="button" class="btn variant-filled-warning">warning</button>
-			<button type="button" class="btn variant-filled-error">Error</button>
-			<button type="button" class="btn variant-filled-surface">Surface</button>
-		</div>
+	<div class="container h-full ml-10 flex justify-left">
+		{#if currentPage == nav.Home}
+			<Main />
+		{:else if currentPage == nav.Settings}
+			<Settings />
+		{/if}
 	</div>
 </AppShell>
