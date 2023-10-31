@@ -34,7 +34,7 @@
 	<div class="container h-full mx-auto flex justify-center">
 		<div class="space-y-5">
 			<h1 class="h1 mt-10">RealmMart</h1>
-			<hr />
+			<hr class="h-px" />
 
 			<p>Start by exploring:</p>
 
