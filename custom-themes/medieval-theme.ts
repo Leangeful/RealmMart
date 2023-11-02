@@ -8,8 +8,8 @@ export const medieval: CustomThemeConfig = {
 		'--theme-font-family-heading': `Berry Rotunda, sans-serif`,
 		'--theme-font-color-base': 'var(--color-surface-700)',
 		'--theme-font-color-dark': 'var(--color-primary-50)',
-		'--theme-rounded-base': '0px',
-		'--theme-rounded-container': '0px',
+		'--theme-rounded-base': '4px',
+		'--theme-rounded-container': '8px',
 		'--theme-border-base': '1px',
 		// =~= Theme On-X Colors =~=
 		'--on-primary': '0 0 0',
