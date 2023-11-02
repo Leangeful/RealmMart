@@ -1,12 +1,17 @@
 <script lang="ts">
+	import { browser } from '$app/environment';
 	import { getGameStore } from '$lib/game/store.js';
 	import { t } from '$lib/i18n/index.js';
 
-	const game = getGameStore();
+	let game: ReturnType<typeof getGameStore>;
+
+	if (browser) {
+		game = getGameStore();
+	}
 </script>
 
 <div class="space-y-5 w-full">
-	<h1 class="h1 mt-10"><span>RealmMart {$game.n.toFixed(0)}</span></h1>
+	<h1 class="h1 mt-10"><span>RealmMart {$game?.n.toFixed(0) ?? 0}</span></h1>
 	<hr class="h-px" />
 
 	<p>{$t('content.title')}:</p>
@@ -24,7 +29,9 @@
 		</ul>
 	</div>
 
-	<button type="button" class="btn variant-filled-primary" on:click={() => $game.n++}
-		>Increment n</button
-	>
+	{#if $game}
+		<button type="button" class="btn variant-filled-primary" on:click={() => $game.n++}
+			>Increment n</button
+		>
+	{/if}
 </div>

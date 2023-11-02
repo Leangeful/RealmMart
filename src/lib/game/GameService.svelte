@@ -4,12 +4,10 @@
 	import { getGameStore } from './store';
 	import { page } from '$app/stores';
 
-	const game = getGameStore();
+	let game: ReturnType<typeof getGameStore>;
 
-	function onMsg({ data: { msg } }: MessageEvent) {
-		if (msg == 'tick') {
-			game.process();
-		}
+	if (browser) {
+		game = getGameStore();
 	}
 
 	const registerWorker = async () => {
@@ -17,7 +15,7 @@
 			const SyncWorker = await import('$lib/game/game.worker?worker');
 			console.log('register worker');
 			$game.worker = new SyncWorker.default();
-			$game.worker.onmessage = onMsg;
+			$game.worker.onmessage = game.process;
 
 			$game.worker.postMessage({
 				msg: 'start',
@@ -32,7 +30,7 @@
 		if (!$page.data.serviceWorkers.length) registerWorker();
 		else {
 			$game.worker = $page.data.serviceWorkers[0];
-			if ($game.worker) $game.worker.onmessage = onMsg;
+			if ($game.worker) $game.worker.onmessage = game.process;
 		}
 	});
 </script>

@@ -3,4 +3,5 @@ export interface Settings {
 	maxTickspeed: number;
 	minTickSpeed: number;
 	locale: string;
+	autoSaveTime: number;
 }

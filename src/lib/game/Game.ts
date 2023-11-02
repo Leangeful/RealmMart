@@ -1,16 +1,43 @@
 import { settings } from '$lib/settings/Settings';
 import type { Settings } from '$lib/settings/types';
+import { save } from './save_load';
 import type { GameState, GameWorker } from './types';
 
-export class Game implements GameState {
+export class Game {
 	n = 0;
 	b = 0;
 
+	lastProcess = Date.now();
+	deltaT = Date.now();
+	timeSinceSave = 0;
+
 	settings: Settings = settings;
 	worker: GameWorker;
+
+	constructor(saveGame?: GameState) {
+		if (saveGame) {
+			this.n = saveGame.n;
+			this.settings = saveGame.settings;
+		}
+	}
+
+	processTime() {
+		const tCurrent = Date.now();
+		this.deltaT = tCurrent - this.lastProcess;
+		this.lastProcess = tCurrent;
+		this.timeSinceSave += this.deltaT;
+	}
+
 	process() {
-		//TODO get/use delta t
 		console.log('process');
+		this.processTime();
+
 		this.n += 1 / (1000 / settings.tickspeed);
+
+		if (this.timeSinceSave >= settings.autoSaveTime) {
+			console.log('saving');
+			save({ n: this.n, settings: this.settings });
+			this.timeSinceSave = 0;
+		}
 	}
 }

@@ -9,13 +9,19 @@
 	import GameService from '$lib/game/GameService.svelte';
 	import { getGameStore, initializeGameStore } from '$lib/game/store';
 	import { locale } from '$lib/i18n';
+	import { browser } from '$app/environment';
+	import { load } from '$lib/game/save_load';
 
-	initializeGameStore();
+	let gameStore: ReturnType<typeof getGameStore>;
+
+	if (browser) {
+		initializeGameStore(load());
+		gameStore = getGameStore();
+	}
+
 	initializeStores();
 
-	const gameStore = getGameStore();
-
-	$: $locale = $gameStore.settings.locale;
+	$: $locale = $gameStore?.settings.locale ?? 'en';
 </script>
 
 <GameService />
