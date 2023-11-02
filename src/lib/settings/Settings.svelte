@@ -1,6 +1,6 @@
 <script>
 	import { getGameStore } from '$lib/game/store';
-	import { t, locale, locales } from '$lib/i18n';
+	import { t, locales } from '$lib/i18n';
 	import { RangeSlider } from '@skeletonlabs/skeleton';
 	const game = getGameStore();
 
@@ -11,9 +11,12 @@
 				data: { value: $game.settings.tickspeed }
 			});
 		}
+		saveSettings();
 	}
 
-	//TODO save settings to ls on change
+	function saveSettings() {
+		//TODO save settings to ls on change
+	}
 </script>
 
 <RangeSlider
@@ -31,14 +34,7 @@
 </RangeSlider>
 
 <div class="font-bold capitalize">{$t('settings.language')}</div>
-<select
-	class="select"
-	size={1}
-	bind:value={$game.settings.locale}
-	on:change={() => {
-		$locale = $game.settings.locale;
-	}}
->
+<select class="select" size={1} bind:value={$game.settings.locale} on:change={saveSettings}>
 	{#each $locales as value}
 		<option {value}>{$t(`lang.${value}`)}</option>
 	{/each}

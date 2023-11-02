@@ -8,11 +8,14 @@
 	import Navigation from '$lib/components/navigation/Navigation.svelte';
 	import GameService from '$lib/game/GameService.svelte';
 	import { getGameStore, initializeGameStore } from '$lib/game/store';
+	import { locale } from '$lib/i18n';
 
 	initializeGameStore();
 	initializeStores();
 
 	const gameStore = getGameStore();
+
+	$: $locale = $gameStore.settings.locale;
 </script>
 
 <GameService />
