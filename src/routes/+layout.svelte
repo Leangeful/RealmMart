@@ -3,12 +3,19 @@
 	import { initializeStores } from '@skeletonlabs/skeleton';
 
 	import { AppShell, AppBar, Drawer } from '@skeletonlabs/skeleton';
-	import BarLead from '../lib/components/appbar/BarLead.svelte';
-	import BarTrail from '../lib/components/appbar/BarTrail.svelte';
-	import Navigation from '../lib/components/navigation/Navigation.svelte';
+	import BarLead from '$lib/components/appbar/BarLead.svelte';
+	import BarTrail from '$lib/components/appbar/BarTrail.svelte';
+	import Navigation from '$lib/components/navigation/Navigation.svelte';
+	import GameService from '$lib/game/GameService.svelte';
+	import { getGameStore, initializeGameStore } from '$lib/game/store';
 
+	initializeGameStore();
 	initializeStores();
+
+	const gameStore = getGameStore();
 </script>
+
+<GameService />
 
 <Drawer>
 	<Navigation />
@@ -35,7 +42,7 @@
 	</svelte:fragment>
 
 	<!--Content-->
-	<div class="container h-full ml-10 flex justify-left">
+	<div class="container h-full px-1 lg:px-10 flex mx-auto justify-center">
 		<slot />
 	</div>
 </AppShell>

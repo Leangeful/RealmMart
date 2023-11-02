@@ -1,4 +1,7 @@
+export type { GameStore } from './store.js';
+
 export interface GameState {
 	n: number;
-	b: number;
 }
+
+export type GameWorker = Worker | undefined;
