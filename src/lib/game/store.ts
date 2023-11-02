@@ -31,12 +31,6 @@ function createGameStore() {
 			update((game) => {
 				game.process();
 				return game;
-			}),
-		increment_n: () =>
-			//TODO remove
-			update((game) => {
-				game.n++;
-				return game;
 			})
 	};
 }
