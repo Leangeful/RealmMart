@@ -10,5 +10,4 @@ export interface SaveInfo {
 export interface SaveList {
 	autoSaveInfo?: SaveInfo;
 	manualSaveInfo?: SaveInfo[];
-	//TODO settings
 }

@@ -78,9 +78,9 @@ export function getSaveList(): SaveList {
 		if (storageKey.includes(autoKey)) {
 			result.autoSaveInfo = parseSaveKeyString(storageKey);
 		} else if (storageKey.includes(manualKey)) {
-			//TODO there has to be a better way to do this
-			if (result.manualSaveInfo) result.manualSaveInfo.push(parseSaveKeyString(storageKey));
-			else result.manualSaveInfo = [parseSaveKeyString(storageKey)];
+			result.manualSaveInfo = result.manualSaveInfo
+				? [...result.manualSaveInfo, parseSaveKeyString(storageKey)]
+				: [parseSaveKeyString(storageKey)];
 		}
 	});
 
