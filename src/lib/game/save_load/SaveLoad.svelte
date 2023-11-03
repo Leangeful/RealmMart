@@ -2,40 +2,45 @@
 	import { browser } from '$app/environment';
 	import { t } from '$lib/i18n';
 	import { getGameStore } from '../store';
-	import { getSaveList } from './save_load';
-	import type { SaveInfo } from './types';
+	import SaveSelectOption from './SaveSelectOption.svelte';
+	import { deleteSave, saveGame, saveListStore } from './save_load';
 
 	let game: ReturnType<typeof getGameStore>;
-
-	//TODO move to Game to make reactive with autosave?
-	let saveList: SaveInfo[] = [];
-
-	/* TODO save settings separately*/
-
 	if (browser) {
 		game = getGameStore();
-		saveList = getSaveList();
+		console.log('SaveListStore:');
 	}
 
 	let selectedSaveKey: string = '';
 </script>
 
+<p>{$saveListStore.autoSaveInfo}</p>
+
 <div class="save-load">
 	<div>
-		<!-- TODO implement manual save -->
-		<button class="btn variant-filled-primary capitalize" on:click={() => {}}
-			>{$t('save.save_game')}</button
+		<button
+			class="btn variant-filled-primary capitalize"
+			on:click={() => {
+				saveGame({ state: $game.state }, false);
+			}}>{$t('save.save_game')}</button
 		>
 	</div>
 
+	<!-- TODO replace with something prettier ...
+        TODO sort by date?
+     -->
 	<select class="select w-fit" size={10} bind:value={selectedSaveKey} on:change={() => []}>
-		{#each saveList as saveInfo}
-			<option value={saveInfo.saveKey}
-				>{saveInfo.saveKey} {new Date(saveInfo.date).toLocaleString()}</option
-			>
-		{/each}
+		{#if $saveListStore.autoSaveInfo}
+			<SaveSelectOption info={$saveListStore.autoSaveInfo} />
+		{/if}
+		{#if $saveListStore.manualSaveInfo}
+			{#each $saveListStore.manualSaveInfo as info}
+				<SaveSelectOption {info} />
+			{/each}
+		{/if}
 	</select>
 
+	<!-- TODO ask for confirmation -->
 	{#if selectedSaveKey}
 		<div>
 			<button
@@ -45,9 +50,12 @@
 				}}>{$t('save.load')}</button
 			>
 
-			<!-- TODO implement delete save -->
-			<button class="btn variant-filled-error capitalize" on:click={() => {}}
-				>{$t('save.delete')}</button
+			<button
+				class="btn variant-filled-error capitalize"
+				on:click={() => {
+					deleteSave(selectedSaveKey);
+					selectedSaveKey = '';
+				}}>{$t('save.delete')}</button
 			>
 		</div>
 	{/if}

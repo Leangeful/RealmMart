@@ -1,6 +1,6 @@
 import { settings } from '$lib/settings/Settings';
 import type { ISettings } from '$lib/settings/types';
-import { loadGame, save } from './save_load/save_load';
+import { loadGame, saveGame } from './save_load/save_load';
 import type { GameState, GameWorker } from './types';
 
 export class Game implements GameState {
@@ -24,7 +24,7 @@ export class Game implements GameState {
 
 	load(saveKey: string) {
 		const saveGame = loadGame(saveKey);
-		console.log('Loading:', saveGame);
+		//console.log('Loading:', saveGame);
 		if (saveGame) Object.assign(this, saveGame);
 	}
 
@@ -36,15 +36,13 @@ export class Game implements GameState {
 	}
 
 	process() {
-		console.log('process');
+		//console.log('process');
 		this.processTime();
 
 		this.state.n += 1 / (1000 / this.deltaT);
 
 		if (this.timeSinceSave >= settings.autoSaveTime) {
-			console.log('saving');
-			//TODO encapsulate GameState to make saving/loading easier
-			save({ state: this.state });
+			saveGame({ state: this.state });
 			this.timeSinceSave = 0;
 		}
 	}
