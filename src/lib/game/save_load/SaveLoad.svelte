@@ -14,8 +14,6 @@
 	let selectedSaveKey: string = '';
 </script>
 
-<p>{$saveListStore.autoSaveInfo}</p>
-
 <div class="save-load">
 	<div>
 		<button
@@ -59,7 +57,6 @@
 			>
 		</div>
 	{/if}
-	<p>Selected save: {selectedSaveKey}</p>
 </div>
 
 <style lang="postcss">
