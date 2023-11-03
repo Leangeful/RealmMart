@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
 	import Loading from '$lib/components/Loading.svelte';
+	import SaveLoad from '$lib/game/save_load/SaveLoad.svelte';
 	import { getGameStore } from '$lib/game/store';
 	import { t, locales } from '$lib/i18n';
-	import { ProgressRadial, RangeSlider } from '@skeletonlabs/skeleton';
+	import { RangeSlider } from '@skeletonlabs/skeleton';
 
 	let game: ReturnType<typeof getGameStore>;
 
@@ -44,11 +44,13 @@
 	</RangeSlider>
 
 	<div class="font-bold capitalize">{$t('settings.language')}</div>
-	<select class="select" size={1} bind:value={$game.settings.locale} on:change={saveSettings}>
+	<select class="select w-fit" size={1} bind:value={$game.settings.locale} on:change={saveSettings}>
 		{#each $locales as value}
 			<option {value}>{$t(`lang.${value}`)}</option>
 		{/each}
 	</select>
+
+	<SaveLoad />
 
 	<p>For testing: {$game.n.toFixed(0)}</p>
 {:else}

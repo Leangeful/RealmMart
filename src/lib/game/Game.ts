@@ -1,9 +1,9 @@
 import { settings } from '$lib/settings/Settings';
 import type { Settings } from '$lib/settings/types';
-import { save } from './save_load';
+import { loadGame, save } from './save_load/save_load';
 import type { GameState, GameWorker } from './types';
 
-export class Game {
+export class Game implements GameState {
 	n = 0;
 	b = 0;
 
@@ -21,6 +21,12 @@ export class Game {
 		}
 	}
 
+	load(saveKey: string) {
+		const saveGame = loadGame(saveKey);
+		console.log('Loading:', saveGame);
+		if (saveGame) Object.assign(this, saveGame);
+	}
+
 	processTime() {
 		const tCurrent = Date.now();
 		this.deltaT = tCurrent - this.lastProcess;
@@ -36,6 +42,7 @@ export class Game {
 
 		if (this.timeSinceSave >= settings.autoSaveTime) {
 			console.log('saving');
+			//TODO encapsulate GameState to make saving/loading easier
 			save({ n: this.n, settings: this.settings });
 			this.timeSinceSave = 0;
 		}

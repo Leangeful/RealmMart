@@ -10,12 +10,12 @@
 	import { getGameStore, initializeGameStore } from '$lib/game/store';
 	import { locale } from '$lib/i18n';
 	import { browser } from '$app/environment';
-	import { load } from '$lib/game/save_load';
+	import { loadGame } from '$lib/game/save_load/save_load';
 
 	let gameStore: ReturnType<typeof getGameStore>;
 
 	if (browser) {
-		initializeGameStore(load());
+		initializeGameStore(loadGame());
 		gameStore = getGameStore();
 	}
 

@@ -13,5 +13,11 @@ export const de = {
 	settings: {
 		tickspeed: 'tickspeed',
 		language: 'sprache'
+	},
+	save: {
+		select: 'wähle spielstand',
+		load: 'laden',
+		delete: 'löschen',
+		save_game: 'jetzt speichern'
 	}
 };

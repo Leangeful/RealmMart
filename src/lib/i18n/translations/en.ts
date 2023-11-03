@@ -13,5 +13,11 @@ export const en = {
 	settings: {
 		tickspeed: 'tickspeed',
 		language: 'language'
+	},
+	save: {
+		select: 'select',
+		load: 'load',
+		delete: 'delete',
+		save_game: 'save now'
 	}
 };

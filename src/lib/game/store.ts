@@ -28,6 +28,11 @@ function createGameStore(saveGame?: GameState) {
 		subscribe,
 		set,
 		update,
+		load: (saveKey: string) =>
+			update((game) => {
+				game.load(saveKey);
+				return game;
+			}),
 		process: () =>
 			update((game) => {
 				game.process();
