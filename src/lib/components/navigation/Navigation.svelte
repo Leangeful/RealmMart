@@ -2,7 +2,7 @@
 	import { getDrawerStore } from '@skeletonlabs/skeleton';
 	import { navigation } from './navigation';
 	import { base } from '$app/paths';
-	import { t, locale, locales } from '$lib/i18n';
+	import { t } from '$lib/i18n';
 	const drawerStore = getDrawerStore();
 
 	function itemClicked() {
