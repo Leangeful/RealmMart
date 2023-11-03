@@ -6,7 +6,6 @@
 	const drawerStore = getDrawerStore();
 
 	function drawerOpen(): void {
-		console.debug('open drawer');
 		drawerStore.open();
 	}
 </script>

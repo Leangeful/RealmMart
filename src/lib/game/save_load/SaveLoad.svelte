@@ -8,7 +8,6 @@
 	let game: ReturnType<typeof getGameStore>;
 	if (browser) {
 		game = getGameStore();
-		console.log('SaveListStore:');
 	}
 
 	let selectedSaveKey: string = '';
@@ -24,9 +23,6 @@
 		>
 	</div>
 
-	<!-- TODO replace with something prettier ...
-        TODO sort by date?
-     -->
 	<select class="select w-fit" size={10} bind:value={selectedSaveKey} on:change={() => []}>
 		{#if $saveListStore.autoSaveInfo}
 			<SaveSelectOption info={$saveListStore.autoSaveInfo} />

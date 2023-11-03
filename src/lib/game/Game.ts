@@ -24,7 +24,6 @@ export class Game implements GameState {
 
 	load(saveKey: string) {
 		const saveGame = loadGame(saveKey);
-		//console.log('Loading:', saveGame);
 		if (saveGame) Object.assign(this, saveGame);
 	}
 
@@ -36,7 +35,6 @@ export class Game implements GameState {
 	}
 
 	process() {
-		//console.log('process');
 		this.processTime();
 
 		this.state.n += 1 / (1000 / this.deltaT);

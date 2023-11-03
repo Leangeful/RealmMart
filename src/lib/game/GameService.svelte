@@ -13,7 +13,6 @@
 	const registerWorker = async () => {
 		if (browser && 'serviceWorker' in navigator) {
 			const SyncWorker = await import('$lib/game/game.worker?worker');
-			console.log('register worker');
 			$game.worker = new SyncWorker.default();
 			$game.worker.onmessage = game.process;
 
@@ -26,7 +25,6 @@
 	};
 
 	onMount(() => {
-		console.log('serviceWorkers:', $page.data.serviceWorkers);
 		if (!$page.data.serviceWorkers.length) registerWorker();
 		else {
 			$game.worker = $page.data.serviceWorkers[0];

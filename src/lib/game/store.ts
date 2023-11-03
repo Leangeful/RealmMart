@@ -17,7 +17,6 @@ export function getGameStore(): GameStore {
 }
 
 export function initializeGameStore(saveGame?: GameState, saveSettings?: ISettings): GameStore {
-	console.log('Init gameStore:', saveGame);
 	const gameStore = createGameStore(saveGame, saveSettings);
 	return setContext(GAME_STORE_KEY, gameStore);
 }
