@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Loading from '$lib/components/Loading.svelte';
 	import SaveLoad from '$lib/game/save_load/SaveLoad.svelte';
 	import { getGameStore } from '$lib/game/store';
 	import { t, locales } from '$lib/i18n';
@@ -19,11 +18,6 @@
 				data: { value: $game.settings.tickspeed }
 			});
 		}
-		saveSettings();
-	}
-
-	function saveSettings() {
-		//TODO save settings to ls on change
 	}
 </script>
 
@@ -44,7 +38,7 @@
 	</RangeSlider>
 
 	<div class="font-bold capitalize">{$t('settings.language')}</div>
-	<select class="select w-fit" size={1} bind:value={$game.settings.locale} on:change={saveSettings}>
+	<select class="select w-fit" size={1} bind:value={$game.settings.locale}>
 		{#each $locales as value}
 			<option {value}>{$t(`lang.${value}`)}</option>
 		{/each}
@@ -52,7 +46,5 @@
 
 	<SaveLoad />
 
-	<p>For testing: {$game.n.toFixed(0)}</p>
-{:else}
-	<Loading />
+	<p>For testing: {$game.state.n.toFixed(0)}</p>
 {/if}

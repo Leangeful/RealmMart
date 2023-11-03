@@ -11,7 +11,7 @@
 </script>
 
 <div class="space-y-5 w-full">
-	<h1 class="h1 mt-10"><span>RealmMart {$game?.n.toFixed(0) ?? 0}</span></h1>
+	<h1 class="h1 mt-10"><span>RealmMart {$game?.state.n.toFixed(0) ?? 0}</span></h1>
 	<hr class="h-px" />
 
 	<p>{$t('content.title')}:</p>
@@ -30,7 +30,7 @@
 	</div>
 
 	{#if $game}
-		<button type="button" class="btn variant-filled-primary" on:click={() => $game.n++}
+		<button type="button" class="btn variant-filled-primary" on:click={() => $game.state.n++}
 			>Increment n</button
 		>
 	{/if}

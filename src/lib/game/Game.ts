@@ -4,8 +4,10 @@ import { loadGame, save } from './save_load/save_load';
 import type { GameState, GameWorker } from './types';
 
 export class Game implements GameState {
-	n = 0;
-	b = 0;
+	state = {
+		n: 0,
+		b: 0
+	};
 
 	lastProcess = Date.now();
 	deltaT = Date.now();
@@ -16,8 +18,8 @@ export class Game implements GameState {
 
 	constructor(saveGame?: GameState) {
 		if (saveGame) {
-			this.n = saveGame.n;
-			this.settings = saveGame.settings;
+			this.state = saveGame.state;
+			//this.settings = saveGame.settings;
 		}
 	}
 
@@ -38,12 +40,12 @@ export class Game implements GameState {
 		console.log('process');
 		this.processTime();
 
-		this.n += 1 / (1000 / this.deltaT);
+		this.state.n += 1 / (1000 / this.deltaT);
 
 		if (this.timeSinceSave >= settings.autoSaveTime) {
 			console.log('saving');
 			//TODO encapsulate GameState to make saving/loading easier
-			save({ n: this.n, settings: this.settings });
+			save({ state: this.state });
 			this.timeSinceSave = 0;
 		}
 	}
