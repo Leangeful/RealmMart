@@ -1,5 +1,5 @@
 import { settings } from '$lib/settings/Settings';
-import type { Settings } from '$lib/settings/types';
+import type { ISettings } from '$lib/settings/types';
 import { loadGame, save } from './save_load/save_load';
 import type { GameState, GameWorker } from './types';
 
@@ -13,14 +13,13 @@ export class Game implements GameState {
 	deltaT = Date.now();
 	timeSinceSave = 0;
 
-	settings: Settings = settings;
+	settings: ISettings = settings;
 	worker: GameWorker;
 
-	constructor(saveGame?: GameState) {
-		if (saveGame) {
-			this.state = saveGame.state;
-			//this.settings = saveGame.settings;
-		}
+	constructor(saveGame?: GameState, saveSettings?: ISettings) {
+		if (saveGame) this.state = saveGame.state;
+
+		if (saveSettings) this.settings = saveSettings;
 	}
 
 	load(saveKey: string) {
