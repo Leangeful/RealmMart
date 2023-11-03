@@ -11,8 +11,6 @@ let saveList: SaveList = {};
 export const saveListStore = writable(saveList);
 
 export function saveGame(game: GameState, autoSave = true, manualID?: number) {
-	//console.debug('Saving:', game);
-
 	let saveKey = autoSave ? autoKey : manualKey;
 	let oldAutoKey: string = '';
 
@@ -37,7 +35,6 @@ export function saveGame(game: GameState, autoSave = true, manualID?: number) {
 }
 
 export function deleteSave(saveKey: string) {
-	console.log('deleting:', saveKey);
 	localStorage.removeItem(saveKey);
 	updateSaveList();
 }
@@ -91,12 +88,10 @@ export function getSaveList(): SaveList {
 }
 
 export function saveSettings(settings: ISettings) {
-	console.log('save settings', settings);
 	writeToLocalStorage(settingsKey, settings);
 }
 
 export function loadSettings(): ISettings | undefined {
-	console.debug('load settings');
 	const settingsStr = localStorage.getItem(settingsKey);
 
 	if (settingsStr) {
@@ -107,7 +102,6 @@ export function loadSettings(): ISettings | undefined {
 }
 
 function writeToLocalStorage(key: string, data: object) {
-	console.log('writing to storage', key, data);
 	localStorage.setItem(key, btoa(JSON.stringify(data)));
 }
 
@@ -124,6 +118,7 @@ function parseSaveKeyString(saveKeyStr: string): SaveInfo {
 
 function updateSaveList() {
 	saveList = getSaveList();
-	//TODO sort list
+
+	saveList.manualSaveInfo?.sort((a, b) => a.id - b.id);
 	saveListStore.set(saveList);
 }
