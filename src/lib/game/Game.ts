@@ -32,7 +32,7 @@ export class Game {
 		console.log('process');
 		this.processTime();
 
-		this.n += 1 / (1000 / settings.tickspeed);
+		this.n += 1 / (1000 / this.deltaT);
 
 		if (this.timeSinceSave >= settings.autoSaveTime) {
 			console.log('saving');
