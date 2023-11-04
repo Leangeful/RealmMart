@@ -1,4 +1,4 @@
-export interface ISettings {
+export interface SettingsExport {
 	tickspeed: number;
 	maxTickspeed: number;
 	minTickSpeed: number;

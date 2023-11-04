@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import SaveLoad from '$lib/game/save_load/SaveLoad.svelte';
-	import { saveSettings } from '$lib/game/save_load/save_load';
+	import { saveGame } from '$lib/game/save_load/save_load';
 	import { getGameStore } from '$lib/game/store';
 	import { t, locales } from '$lib/i18n';
 	import { RangeSlider } from '@skeletonlabs/skeleton';
@@ -23,7 +23,7 @@
 	}
 
 	function settingsChanged() {
-		saveSettings($game.settings);
+		saveGame($game.getExport());
 	}
 </script>
 
@@ -57,5 +57,5 @@
 
 	<SaveLoad />
 
-	<p>For testing: {$game.state.n.toFixed(0)}</p>
+	<p>For testing: {$game.n.toFixed(0)}</p>
 {/if}

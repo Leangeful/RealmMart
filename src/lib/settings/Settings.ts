@@ -1,6 +1,6 @@
-import type { Settings } from './types';
+import type { SettingsExport } from './types';
 
-export const settings: Settings = {
+export const settings: SettingsExport = {
 	tickspeed: 500,
 	minTickSpeed: 10,
 	maxTickspeed: 1000,
