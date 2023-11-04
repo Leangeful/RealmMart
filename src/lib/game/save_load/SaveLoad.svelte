@@ -18,7 +18,7 @@
 		<button
 			class="btn variant-filled-primary capitalize"
 			on:click={() => {
-				saveGame({ state: $game.state }, false);
+				saveGame($game.getExport(), false);
 			}}>{$t('save.save_game')}</button
 		>
 	</div>

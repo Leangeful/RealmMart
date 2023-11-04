@@ -11,10 +11,12 @@
 </script>
 
 <div class="space-y-5 w-full">
-	<h1 class="h1 mt-10"><span>RealmMart {$game?.state.n.toFixed(0) ?? 0}</span></h1>
+	<h1 class="h1 mt-10"><span>RealmMart {$game?.n.toFixed(0) ?? 0}</span></h1>
 	<hr class="h-px" />
 
 	<p>{$t('content.title')}:</p>
+
+	<p>Gold: {$game?.gold.amount.toFixed(0) ?? 0}</p>
 
 	<div class="block card p-2">
 		<div class="h3">Stores</div>
@@ -30,7 +32,7 @@
 	</div>
 
 	{#if $game}
-		<button type="button" class="btn variant-filled-primary" on:click={() => $game.state.n++}
+		<button type="button" class="btn variant-filled-primary" on:click={() => $game.n++}
 			>Increment n</button
 		>
 	{/if}
