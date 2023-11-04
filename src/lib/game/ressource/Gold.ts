@@ -8,11 +8,11 @@ export class Gold extends Ressource implements GoldExport {
 		super(amount, income);
 	}
 
-	getExportedProps(): GoldExport {
-		return { upgrade: this.upgrade, ...super.getExportedProps() };
+	getExport(): GoldExport {
+		return { upgrade: this.upgrade, ...super.getExport() };
 	}
-	setExportedProps(obj: GoldExport) {
-		super.setExportedProps(obj);
+	setExport(obj: GoldExport) {
+		super.setExport(obj);
 		this.upgrade = obj.upgrade;
 	}
 }

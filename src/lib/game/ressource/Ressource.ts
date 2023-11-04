@@ -13,10 +13,10 @@ export class Ressource implements RessourceExport {
 		this.amount += this.income / (1000 / deltaT);
 	}
 
-	getExportedProps(): RessourceExport {
+	getExport(): RessourceExport {
 		return { amount: this.amount, income: this.income };
 	}
-	setExportedProps(obj: RessourceExport) {
+	setExport(obj: RessourceExport) {
 		this.amount = obj.amount;
 		this.income = obj.income;
 	}
