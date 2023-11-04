@@ -2,7 +2,7 @@
 	import { browser } from '$app/environment';
 	import SaveLoad from '$lib/game/save_load/SaveLoad.svelte';
 	import { saveGame } from '$lib/game/save_load/save_load';
-	import { getGameStore } from '$lib/game/store';
+	import { getGameStore } from '$lib/game/gameStore';
 	import { t, locales } from '$lib/i18n';
 	import { RangeSlider } from '@skeletonlabs/skeleton';
 
@@ -56,6 +56,4 @@
 	</select>
 
 	<SaveLoad />
-
-	<p>For testing: {$game.n.toFixed(0)}</p>
 {/if}

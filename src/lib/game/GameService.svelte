@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { onMount } from 'svelte';
-	import { getGameStore } from './store';
+	import { getGameStore } from './gameStore';
 	import { page } from '$app/stores';
 
 	let game: ReturnType<typeof getGameStore>;

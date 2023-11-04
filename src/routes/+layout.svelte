@@ -7,7 +7,7 @@
 	import BarTrail from '$lib/components/appbar/BarTrail.svelte';
 	import Navigation from '$lib/components/navigation/Navigation.svelte';
 	import GameService from '$lib/game/GameService.svelte';
-	import { getGameStore, initializeGameStore } from '$lib/game/store';
+	import { getGameStore, initializeGameStore } from '$lib/game/gameStore';
 	import { locale } from '$lib/i18n';
 	import { browser } from '$app/environment';
 

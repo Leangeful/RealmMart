@@ -2,11 +2,12 @@ import { settings } from '$lib/settings/Settings';
 import type { SettingsExport } from '$lib/settings/types';
 import { Gold } from './ressource/Gold';
 import { loadGame, saveGame } from './save_load/save_load';
+import { Store } from './store/Store';
 import type { GameExport, GameWorker } from './types';
 
 export class Game implements GameExport {
-	n = 0;
-	gold = new Gold(0, 0.5);
+	gold = new Gold(2, 0);
+	store = new Store();
 
 	lastProcess = Date.now();
 	deltaT = Date.now();
@@ -18,7 +19,6 @@ export class Game implements GameExport {
 	process() {
 		this.processTime();
 		this.gold.process(this.deltaT);
-		this.n += 1 / (1000 / this.deltaT);
 		this.timeSinceSave += this.deltaT;
 
 		this.save();
@@ -31,7 +31,11 @@ export class Game implements GameExport {
 	}
 
 	getExport(): GameExport {
-		return { settings: this.settings, n: this.n, gold: this.gold.getExportedProps() };
+		return {
+			settings: this.settings,
+			gold: this.gold.getExport(),
+			store: this.store.getExport()
+		};
 	}
 
 	save() {
@@ -45,8 +49,7 @@ export class Game implements GameExport {
 		const loadedGame = loadGame(saveKey);
 		if (loadedGame) {
 			this.settings = loadedGame.settings;
-			this.n = loadedGame.n;
-			this.gold.setExportedProps(loadedGame.gold);
+			this.gold.setExport(loadedGame.gold);
 		}
 		console.log('Loaded:', loadedGame);
 	}

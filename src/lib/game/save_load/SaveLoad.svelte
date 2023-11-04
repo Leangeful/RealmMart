@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
 	import { t } from '$lib/i18n';
-	import { getGameStore } from '../store';
+	import { getGameStore } from '../gameStore';
 	import SaveSelectOption from './SaveSelectOption.svelte';
 	import { deleteSave, saveGame, saveListStore } from './save_load';
 
@@ -19,8 +19,10 @@
 			class="btn variant-filled-primary capitalize"
 			on:click={() => {
 				saveGame($game.getExport(), false);
-			}}>{$t('save.save_game')}</button
+			}}
 		>
+			{$t('save.save_game')}
+		</button>
 	</div>
 
 	<select class="select w-fit" size={10} bind:value={selectedSaveKey} on:change={() => []}>
