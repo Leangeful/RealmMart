@@ -1,16 +1,14 @@
-import type { ISettings } from '$lib/settings/types';
 import { writable } from 'svelte/store';
-import type { GameState } from '../types';
+import type { GameExport } from '../types';
 import type { SaveInfo, SaveList, SaveType } from './types';
 
-const settingsKey = 'realmMart-settings';
 const autoKey = 'realmMart-auto-0-';
 const manualKey = 'realmMart-manual-';
 
 let saveList: SaveList = {};
 export const saveListStore = writable(saveList);
 
-export function saveGame(game: GameState, autoSave = true, manualID?: number) {
+export function saveGame(game: GameExport, autoSave = true, manualID?: number) {
 	let saveKey = autoSave ? autoKey : manualKey;
 	let oldAutoKey: string = '';
 
@@ -39,7 +37,7 @@ export function deleteSave(saveKey: string) {
 	updateSaveList();
 }
 
-export function loadGame(loadKey?: string): GameState | undefined {
+export function loadGame(loadKey?: string): GameExport | undefined {
 	updateSaveList();
 
 	let saveStr: string | null = '';
@@ -85,20 +83,6 @@ export function getSaveList(): SaveList {
 	});
 
 	return result;
-}
-
-export function saveSettings(settings: ISettings) {
-	writeToLocalStorage(settingsKey, settings);
-}
-
-export function loadSettings(): ISettings | undefined {
-	const settingsStr = localStorage.getItem(settingsKey);
-
-	if (settingsStr) {
-		return JSON.parse(atob(settingsStr));
-	}
-
-	return undefined;
 }
 
 function writeToLocalStorage(key: string, data: object) {
