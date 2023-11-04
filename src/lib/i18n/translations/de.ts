@@ -2,7 +2,8 @@ import lang from '../lang.json';
 export const de = {
 	lang,
 	nav: {
-		start: 'Start',
+		mainHome: 'Zuhause',
+		mainStore: 'Geschäft',
 		settings: 'Einstellungen'
 	},
 	content: {
