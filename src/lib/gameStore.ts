@@ -1,6 +1,7 @@
 import { getContext, setContext } from 'svelte';
 import { writable } from 'svelte/store';
 import { game } from './game';
+import { loadGame } from './saveLoad/saveLoad';
 
 const GAME_STORE_KEY = 'gameStore';
 
@@ -24,13 +25,14 @@ function createGameStore() {
 	return {
 		subscribe,
 		set,
-		update
-		/* load: (saveKey?: string) =>
+		update,
+		load: (saveKey?: string) =>
 			update((game) => {
-				game.load(saveKey);
+				const loadedGame = loadGame(saveKey);
+				if (loadedGame) game = loadedGame;
 				return game;
-			}),
-		process: () =>
+			})
+		/* process: () =>
 			update((game) => {
 				game.process();
 				return game;

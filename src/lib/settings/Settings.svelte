@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import SaveLoad from '$lib/save_load/SaveLoad.svelte';
-	import { saveGame } from '$lib/save_load/save_load';
+	import SaveLoad from '$lib/saveLoad/SaveLoad.svelte';
+	import { saveGame } from '$lib/saveLoad/saveLoad';
 	import { getGameStore } from '$lib/gameStore';
 	import { t, locales } from '$lib/i18n';
 	import { RangeSlider } from '@skeletonlabs/skeleton';

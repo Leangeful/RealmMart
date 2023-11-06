@@ -3,22 +3,22 @@
 	import { t } from '$lib/i18n';
 	import { getGameStore } from '../gameStore';
 	import SaveSelectOption from './SaveSelectOption.svelte';
-	import { deleteSave, saveGame, saveListStore } from './save_load';
+	import { deleteSave, loadGame, saveGame, saveListStore } from './saveLoad';
 
 	let game: ReturnType<typeof getGameStore>;
-	if (browser) {
-		game = getGameStore();
-	}
+	if (browser) game = getGameStore();
 
 	let selectedSaveKey: string = '';
 </script>
+
+<p>Gold: {($game.gold ?? 0).toFixed(0)}</p>
 
 <div class="save-load">
 	<div>
 		<button
 			class="btn variant-filled-primary capitalize"
 			on:click={() => {
-				saveGame($game.getExport(), false);
+				saveGame($game, false);
 			}}
 		>
 			{$t('save.save_game')}
@@ -42,7 +42,8 @@
 			<button
 				class="btn variant-filled-secondary capitalize"
 				on:click={() => {
-					game.load(selectedSaveKey);
+					const loadedGame = loadGame(selectedSaveKey);
+					if (loadedGame) $game = loadedGame;
 				}}>{$t('save.load')}</button
 			>
 

@@ -4,7 +4,7 @@
 	import { getGameStore } from './gameStore';
 	import { page } from '$app/stores';
 	import type { SettingsExport } from '$lib/settings/types';
-	import { saveGame, loadGame } from './save_load/save_load';
+	import { saveGame, loadGame } from './saveLoad/saveLoad';
 	import type { GameWorker, GameExport } from './types';
 	import { settings } from './settings/settings';
 
@@ -50,7 +50,7 @@
 		timeSinceSave += deltaT;
 		$game.gold += $game.gold_sec / (1000 / deltaT);
 
-		//save();
+		save();
 	}
 
 	function processTime() {
@@ -58,28 +58,11 @@
 		deltaT = tCurrent - lastProcess;
 		lastProcess = tCurrent;
 	}
-	/*
-	function getExport(): GameExport {
-		return {
-			settings: settings,
-			gold: gold.getExport(),
-			store: store.getExport()
-		};
-	}
 
 	function save() {
 		if (timeSinceSave >= settings.autoSaveTime) {
-			saveGame(getExport());
+			saveGame($game);
 			timeSinceSave = 0;
 		}
 	}
-
-	function load(saveKey?: string) {
-		const loadedGame = loadGame(saveKey);
-		if (loadedGame) {
-			settings = loadedGame.settings;
-			gold.setExport(loadedGame.gold);
-		}
-		console.log('Loaded:', loadedGame);
-	} */
 </script>

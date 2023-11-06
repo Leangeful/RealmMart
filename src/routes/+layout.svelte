@@ -15,7 +15,7 @@
 
 	initializeGameStore();
 	gameStore = getGameStore();
-	//$gameStore.load();
+	if (browser) gameStore.load();
 	initializeStores();
 
 	$: $locale = $gameStore?.settings.locale ?? 'en';
