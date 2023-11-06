@@ -3,9 +3,8 @@
 	import { onMount } from 'svelte';
 	import { getGameStore } from './gameStore';
 	import { page } from '$app/stores';
-	import type { SettingsExport } from '$lib/settings/types';
-	import { saveGame, loadGame } from './saveLoad/saveLoad';
-	import type { GameWorker, GameExport } from './types';
+	import { saveGame } from './saveLoad/saveLoad';
+	import type { GameWorker } from './types';
 	import { settings } from './settings/settings';
 
 	let game: ReturnType<typeof getGameStore>;
@@ -37,8 +36,6 @@
 			if (worker) worker.onmessage = process;
 		}
 	});
-
-	//TODO
 
 	let lastProcess = Date.now();
 	let deltaT = Date.now();

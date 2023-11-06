@@ -32,10 +32,5 @@ function createGameStore() {
 				if (loadedGame) game = loadedGame;
 				return game;
 			})
-		/* process: () =>
-			update((game) => {
-				game.process();
-				return game;
-			}) */
 	};
 }

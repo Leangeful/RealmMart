@@ -22,7 +22,7 @@
 	}
 
 	function settingsChanged() {
-		/* FIXME saveGame(); */
+		saveGame($game);
 	}
 </script>
 

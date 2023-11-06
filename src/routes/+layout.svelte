@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.postcss';
 	import { initializeStores } from '@skeletonlabs/skeleton';
-
 	import { AppShell, AppBar, Drawer } from '@skeletonlabs/skeleton';
 	import BarLead from '$lib/components/appbar/BarLead.svelte';
 	import BarTrail from '$lib/components/appbar/BarTrail.svelte';
