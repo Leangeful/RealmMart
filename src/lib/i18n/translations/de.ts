@@ -20,5 +20,13 @@ export const de = {
 		load: 'laden',
 		delete: 'löschen',
 		save_game: 'jetzt speichern'
+	},
+	upgrades: {
+		store: {
+			open: {
+				name: 'Geschäft eröffnen',
+				desc: 'Eröffne dein erstes Geschäft'
+			}
+		}
 	}
 };

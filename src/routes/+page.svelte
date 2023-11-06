@@ -1,16 +1,13 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import Store from '$lib/game/components/Store.svelte';
-	import { getGameStore } from '$lib/game/gameStore.js';
-	import { t } from '$lib/i18n/index.js';
+	import { getGameStore } from '$lib/gameStore.js';
 
 	let game: ReturnType<typeof getGameStore>;
+	if (browser) game = getGameStore();
 
-	if (browser) {
-		game = getGameStore();
-	}
+	$: gold = $game?.gold ?? 0;
 </script>
 
-{#if $game}
-	<Store />
-{/if}
+<p>Gold {gold.toFixed(0)}</p>
+
+<button on:click={() => $game.gold++}>Increment Gold</button>

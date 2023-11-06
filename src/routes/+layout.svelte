@@ -6,26 +6,22 @@
 	import BarLead from '$lib/components/appbar/BarLead.svelte';
 	import BarTrail from '$lib/components/appbar/BarTrail.svelte';
 	import Navigation from '$lib/components/navigation/Navigation.svelte';
-	import GameService from '$lib/game/GameService.svelte';
-	import { getGameStore, initializeGameStore } from '$lib/game/gameStore';
+	import { getGameStore, initializeGameStore } from '$lib/gameStore';
 	import { locale } from '$lib/i18n';
 	import { browser } from '$app/environment';
+	import Game from '$lib/Game.svelte';
 
 	let gameStore: ReturnType<typeof getGameStore>;
 
-	if (browser) {
-		initializeGameStore();
-		gameStore = getGameStore();
-		$gameStore.load();
-	}
-
+	initializeGameStore();
+	gameStore = getGameStore();
+	//$gameStore.load();
 	initializeStores();
 
 	$: $locale = $gameStore?.settings.locale ?? 'en';
 </script>
 
-<GameService />
-
+<Game />
 <Drawer>
 	<Navigation />
 </Drawer>

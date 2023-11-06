@@ -20,5 +20,13 @@ export const en = {
 		load: 'load',
 		delete: 'delete',
 		save_game: 'save now'
+	},
+	upgrade: {
+		store: {
+			open: {
+				name: 'Open Store',
+				desc: 'Open your first store.'
+			}
+		}
 	}
 };

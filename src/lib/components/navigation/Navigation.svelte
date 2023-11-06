@@ -4,7 +4,7 @@
 	import { base } from '$app/paths';
 	import { t } from '$lib/i18n';
 	import { browser } from '$app/environment';
-	import { getGameStore } from '$lib/game/gameStore';
+	import { getGameStore } from '$lib/gameStore';
 	const drawerStore = getDrawerStore();
 
 	let game: ReturnType<typeof getGameStore>;
@@ -22,7 +22,7 @@
 	<ul class="">
 		<li class="space-y-2">
 			<a href="{base}{navigation[0].path}" on:click={itemClicked}
-				>{$t('nav.' + ($game?.store.hasOpened ? 'mainStore' : 'mainHome'))}</a
+				>{$t('nav.' + /*($game?.store.hasOpened ? 'mainStore' : */ 'mainHome')}</a
 			>
 			<a href="{base}{navigation[1].path}" on:click={itemClicked}
 				>{$t('nav.' + navigation[1].name)}</a

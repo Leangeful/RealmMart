@@ -1,7 +1,7 @@
 import type { SettingsExport } from './types';
 
 export const settings: SettingsExport = {
-	tickspeed: 500,
+	tickspeed: 200,
 	minTickSpeed: 10,
 	maxTickspeed: 1000,
 	locale: 'en',

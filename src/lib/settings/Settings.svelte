@@ -1,20 +1,19 @@
 <script lang="ts">
 	import { browser } from '$app/environment';
-	import SaveLoad from '$lib/game/save_load/SaveLoad.svelte';
-	import { saveGame } from '$lib/game/save_load/save_load';
-	import { getGameStore } from '$lib/game/gameStore';
+	import SaveLoad from '$lib/save_load/SaveLoad.svelte';
+	import { saveGame } from '$lib/save_load/save_load';
+	import { getGameStore } from '$lib/gameStore';
 	import { t, locales } from '$lib/i18n';
 	import { RangeSlider } from '@skeletonlabs/skeleton';
+	import { page } from '$app/stores';
 
 	let game: ReturnType<typeof getGameStore>;
-
-	if (browser) {
-		game = getGameStore();
-	}
+	if (browser) game = getGameStore();
 
 	function tsChanged() {
-		if (browser && game && $game.worker) {
-			$game.worker.postMessage({
+		let worker = $page.data.serviceWorkers[0];
+		if (browser && game && worker) {
+			worker.postMessage({
 				msg: 'changets',
 				data: { value: $game.settings.tickspeed }
 			});
@@ -23,7 +22,7 @@
 	}
 
 	function settingsChanged() {
-		saveGame($game.getExport());
+		/* FIXME saveGame(); */
 	}
 </script>
 

@@ -1,7 +1,6 @@
 import { getContext, setContext } from 'svelte';
 import { writable } from 'svelte/store';
-
-import { Game } from './Game';
+import { game } from './game';
 
 const GAME_STORE_KEY = 'gameStore';
 
@@ -21,12 +20,12 @@ export function initializeGameStore(): GameStore {
 
 export type GameStore = ReturnType<typeof createGameStore>;
 function createGameStore() {
-	const { subscribe, set, update } = writable<Game>(new Game());
+	const { subscribe, set, update } = writable(game);
 	return {
 		subscribe,
 		set,
-		update,
-		load: (saveKey?: string) =>
+		update
+		/* load: (saveKey?: string) =>
 			update((game) => {
 				game.load(saveKey);
 				return game;
@@ -35,6 +34,6 @@ function createGameStore() {
 			update((game) => {
 				game.process();
 				return game;
-			})
+			}) */
 	};
 }
