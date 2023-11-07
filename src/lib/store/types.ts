@@ -1,3 +1,5 @@
+import type { Upgrades } from '$lib/types';
+
 export interface StoreExport {
-	hasOpened: boolean;
+	upgrades: Upgrades;
 }
