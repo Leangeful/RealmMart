@@ -4,4 +4,5 @@ export interface SettingsExport {
 	minTickSpeed: number;
 	locale: string;
 	autoSaveTime: number;
+	autoSave: boolean;
 }

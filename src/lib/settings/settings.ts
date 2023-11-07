@@ -5,5 +5,6 @@ export const settings: SettingsExport = {
 	minTickSpeed: 10,
 	maxTickspeed: 1000,
 	locale: 'en',
-	autoSaveTime: 10000
+	autoSaveTime: 10000,
+	autoSave: true
 };

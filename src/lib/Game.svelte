@@ -9,11 +9,12 @@
 
 	let game: ReturnType<typeof getGameStore>;
 
-	if (browser) {
-		game = getGameStore();
-	}
-
+	if (browser) game = getGameStore();
 	let worker: GameWorker;
+
+	let lastProcess = Date.now();
+	let deltaT = Date.now();
+	let timeSinceSave = 0;
 
 	const registerWorker = async () => {
 		if (browser && 'serviceWorker' in navigator) {
@@ -23,7 +24,7 @@
 
 			worker.postMessage({
 				msg: 'start',
-				data: { value: settings.tickspeed }
+				data: { value: $game.settings.tickspeed }
 			});
 			$page.data.serviceWorkers.push(worker);
 		}
@@ -36,10 +37,6 @@
 			if (worker) worker.onmessage = process;
 		}
 	});
-
-	let lastProcess = Date.now();
-	let deltaT = Date.now();
-	let timeSinceSave = 0;
 
 	function process() {
 		console.log('process');
@@ -57,7 +54,7 @@
 	}
 
 	function save() {
-		if (timeSinceSave >= settings.autoSaveTime) {
+		if ($game.settings.autoSave && timeSinceSave >= $game.settings.autoSaveTime) {
 			saveGame($game);
 			timeSinceSave = 0;
 		}
