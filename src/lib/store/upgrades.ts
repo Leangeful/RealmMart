@@ -1,6 +1,6 @@
-export const storeUpgrades = [
-	{
-		id: 'open',
-		cost: 30
+export const upgrades = {
+	open: {
+		cost: 30,
+		purchased: 0
 	}
-];
+};
